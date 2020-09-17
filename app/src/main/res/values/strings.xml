@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">QuizApp</string>
+    <string name="app_name">Chemistry Quiz</string>
     <string name="my_laptop_name">Lenovo Legion</string>
     <string name="correct_text">Correct!</string>
     <string name="incorrect_text">InCorrect!</string>
