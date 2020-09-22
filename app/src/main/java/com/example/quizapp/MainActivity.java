@@ -22,13 +22,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sharmin.charging.AdsLib;
 import com.shashank.sony.fancytoastlib.FancyToast;
+import com.smnadim21.api.BdApps;
+import com.smnadim21.api.Constants;
+import com.smnadim21.api.SubscriptionStatusListener;
 
-import static com.sharmin.charging.SP.getSubCode;
-import static com.sharmin.charging.SP.setSubCode;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SubscriptionStatusListener {
     private final String SCORE_KEY="SCORE";
     private final String INDEX_KEY="INDEX";
     private TextView mTxtQuestion;
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar mProgressBar;
     private TextView mQuizstatsTextView;
     private int mUserScore;
-    AdsLib adsLib;
+    boolean flag=false;
     int qc = 0;
     private QuizModel[] questionCollection = new QuizModel[]{
             new QuizModel(R.string.q1,true),
@@ -73,6 +73,14 @@ public class MainActivity extends AppCompatActivity {
 
         //first lifecycle method
 //        Toast.makeText(getApplicationContext(),"On Create method is Called",Toast.LENGTH_LONG).show();
+
+        Constants.MSG_TEXT = "start 123sa";
+        Constants.APP_ID = "APP_016475";
+        Constants.APP_PASSWORD = "f36f24ba800203e608718261e2d7d725";
+        BdApps.registerAPP();// use this method to register
+
+        BdApps.checkSubscriptionStatus(this);
+
         mTxtQuestion= findViewById(R.id.txtQuestion);
         QuizModel q1=questionCollection[mQuestionIndex];
         mQuizQuestion = q1.getmQuestion();
@@ -87,12 +95,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-              if(qc <=1000) {
+              if(qc <=5) {
                   evaluateUserAnswer(true);
                   changeQuestionOnButtonClick();
                   qc++;
               }else{
-               //   showDialog(MainActivity.this);
+                  if(!flag)// this line checks if the content is locked or not
+                  // your content is locked here
+                  {
+                      BdApps.showDialog(MainActivity.this, MainActivity.this);// BdApps shows dialogue for charging!  [  pass Activity.this/ getActivity() / (Activity) context inside  as first parameter and Activity.this/Fragement.this as Second parameter in BdApps.showDialog() method! ]
+
+                  } else {
+                      evaluateUserAnswer(true);
+                      changeQuestionOnButtonClick();
+                      qc++;
+                  }
               }
             }
         });
@@ -101,110 +118,28 @@ public class MainActivity extends AppCompatActivity {
         btnF.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(qc <=1000 ) {
+                if(qc <=5 ) {
                     evaluateUserAnswer(false);
                     changeQuestionOnButtonClick();
                     qc++;
                 }else {
-                 //   showDialog(MainActivity.this);
+                    if(!flag)// this line checks if the content is locked or not
+                    // your content is locked here
+                    {
+                        BdApps.showDialog(MainActivity.this, MainActivity.this);// BdApps shows dialogue for charging!  [  pass Activity.this/ getActivity() / (Activity) context inside  as first parameter and Activity.this/Fragement.this as Second parameter in BdApps.showDialog() method! ]
+
+                    } else {
+                        evaluateUserAnswer(true);
+                        changeQuestionOnButtonClick();
+                        qc++;
+                    }
                 }
             }
         });
 
 
-        adsLib= ChargingInstance.getAdsLib();
-        adsLib.checkSubStatus(getSubCode());
-
        // showDialog(MainActivity.this);
     }
-
-
-
-    public void showDialog(final Activity activity) {
-        final Dialog dialog = new Dialog(activity);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.setContentView(R.layout.sub);
-
-
-
-
-        final TextView textView_sub = dialog.findViewById(R.id.textView_sub);
-        final TextView textView_sub1 = dialog.findViewById(R.id.textView_sub1);
-
-        Button button_s_daily = dialog.findViewById(R.id.button_s_daily);
-        Button button_s_daily_api = dialog.findViewById(R.id.button_s_daily_api);
-        final Button bt_send_sms = dialog.findViewById(R.id.bt_send_sms);
-        final Button submit_code = dialog.findViewById(R.id.submit_code);
-
-        final LinearLayout ll_sub = dialog.findViewById(R.id.ll_sub);
-        final LinearLayout ll_sub_1 = dialog.findViewById(R.id.ll_sub_1);
-        final EditText otp_code = dialog.findViewById(R.id.otp_code);
-
-
-        button_s_daily.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                textView_sub.setText("সাবস্ক্রাইব করতে আপনার মোবাইল নাম্বার দিন");
-                textView_sub1.setText("শুধুমাত্র রবি এবং এয়ারটেল গ্রাহকদের জন্য");
-                // ll_sub.setVisibility(View.VISIBLE);
-                ll_sub_1.setVisibility(View.GONE);
-                bt_send_sms.setVisibility(View.VISIBLE);
-                adsLib.subscribe();
-
-            }
-        });
-
-        button_s_daily_api.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //call sub api
-            }
-        });
-
-        bt_send_sms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Uri uri = Uri.parse("smsto:21213");
-                Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
-                intent.putExtra("sms_body", "start "+ ChargingInstance.MSG_TEXT);
-                activity.startActivity(intent);
-                dialog.dismiss();
-            }
-        });
-
-
-        submit_code.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(), "Clicked Laugh Vote", Toast.LENGTH_SHORT).show();
-                setSubCode(otp_code.getText().toString().isEmpty() ? "111111" : otp_code.getText().toString());
-                adsLib.checkSubStatus(otp_code.getText().toString().isEmpty() ? "111111" : otp_code.getText().toString());
-                qc = 100;
-                dialog.dismiss();
-            }
-        });
-
-        Button dialogButton = (Button) dialog.findViewById(R.id.video_ad);
-
-        dialogButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-            }
-        });
-
-
-        dialog.show();
-
-    }
-
-
 
 
 
@@ -238,6 +173,22 @@ public class MainActivity extends AppCompatActivity {
         else{
             FancyToast.makeText(getApplicationContext(),"Wrong Answer",FancyToast.LENGTH_SHORT,FancyToast.CONFUSING,true).show();
         }
+    }
+
+    @Override
+    public void onSuccess(boolean isSubscribed) {
+        if (!isSubscribed) {
+            flag = false;
+        }
+        else {
+            flag = true;
+            qc = 100;
+        }
+    }
+
+    @Override
+    public void onFailed(String message) {
+
     }
 
 //    //Lifecycle Methods

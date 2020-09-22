@@ -20,6 +20,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
@@ -31,6 +37,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.github.Shashank02051997:FancyToast-Android:0.1.6'
 
-    implementation 'com.github.sharminsayed:BDapps-Charging:0.1.0'
+    //implementation 'com.github.sharminsayed:BDapps-Charging:0.1.0'
     implementation 'com.google.android.material:material:1.1.0'
+
+   // implementation 'com.github.Shakiba-e-nur.bdapps-charging:api:0.0.3'
+    implementation 'com.github.smnadim21:bdapps:0.0.3'
 }
