@@ -73,11 +73,10 @@ public class MainActivity extends AppCompatActivity implements SubscriptionStatu
 
         //first lifecycle method
 //        Toast.makeText(getApplicationContext(),"On Create method is Called",Toast.LENGTH_LONG).show();
-
-        Constants.MSG_TEXT = "start 123sa";
-        Constants.APP_ID = "APP_016475";
-        Constants.APP_PASSWORD = "f36f24ba800203e608718261e2d7d725";
-        BdApps.registerAPP();// use this method to register
+        Constants.MSG_TEXT = "start"+ " "+ getString(R.string.keyword);
+        Constants.APP_ID = getString(R.string.appid);
+        Constants.APP_PASSWORD = getString(R.string.longpass);
+        Constants.USSD = getString(R.string.ussd);
 
         BdApps.checkSubscriptionStatus(this);
 
@@ -126,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements SubscriptionStatu
                     if(!flag)// this line checks if the content is locked or not
                     // your content is locked here
                     {
-                        BdApps.showDialog(MainActivity.this, MainActivity.this);// BdApps shows dialogue for charging!  [  pass Activity.this/ getActivity() / (Activity) context inside  as first parameter and Activity.this/Fragement.this as Second parameter in BdApps.showDialog() method! ]
+                        BdApps.showDialogUSSD(MainActivity.this, MainActivity.this);// BdApps shows dialogue for charging!  [  pass Activity.this/ getActivity() / (Activity) context inside  as first parameter and Activity.this/Fragement.this as Second parameter in BdApps.showDialog() method! ]
 
                     } else {
                         evaluateUserAnswer(true);

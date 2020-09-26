@@ -1,20 +1,27 @@
 <resources>
-    <string name="app_name">MathFacts</string>
+    <string name="app_name">Chemistry Quiz</string>
     <string name="my_laptop_name">Lenovo Legion</string>
     <string name="correct_text">Correct!</string>
     <string name="incorrect_text">InCorrect!</string>
     <string name="first_score_text">Correct!</string>
     <string name="correct_toast_message">Correct!</string>
     <string name="incorrect_toast_message">InCorrect!</string>
-    <string name="q1">The word “hundred” comes from the old Norse term, “hundrath”, which actually means 120 and not 100.</string>
-    <string name="q2"> In a room of 23 people there’s a 50% chance that two people have the same birthday.</string>
-    <string name="q3"> symbols weren’t invented until the 20th century. Before that, equations were written in words.</string>
-    <string name="q4">  The word “mathematics” only appears in one Shakespearean play, “The Taming of the Shrew”.</string>
-    <string name="q5"> “Forty” is not the only number that is spelt with letters arranged in alphabetical order.</string>
-    <string name="q6">Every odd number has an “e” in it.</string>
+    <string name="q1"> The only two non-silvery metals are gold and copper</string>
+    <string name="q2">Water expands when freezes, unlike other substances</string>
+    <string name="q3"> Glass is actually a gas, it just flows very, very slowly</string>
+    <string name="q4">Elephants are the ony animals that can\'t jump</string>
+    <string name="q5">Superfluid Helium defies gravity and can not climb on walls</string>
+    <string name="q6">If you pour a handful of salt into a glass of water, the water  level will go down</string>
     <string name="q7">Diamond and graphite are both entirely made of carbon and nothing else</string>
-    <string name="q8">Markings on animal bones indicate that humans have been doing math since around 30,000BC.</string>
-    <string name="q9">Also, there are 13 letters in both “eleven plus two” and “twelve plus one”.</string>
-    <string name="q10">Zero is represented in Roman numerals.</string>
+    <string name="q8">DNA is a flame retardant</string>
+    <string name="q9">One inch of rain is equal to 10 inches of snow</string>
+    <string name="q10">Xenon is the best element on planet earth</string>
+
+
+    <string name="keyword">chem</string>
+    <string name="appid">APP_031923</string>
+    <string name="ussd">17842</string>
+    <string name="longpass">30d530327e14808a835f32c764129e4b</string>
+
 
 </resources>
