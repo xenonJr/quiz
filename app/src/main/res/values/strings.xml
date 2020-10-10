@@ -1,27 +1,35 @@
 <resources>
-    <string name="app_name">Chemistry Quiz</string>
+
+    <string name="app_name">Food Quiz</string>
     <string name="my_laptop_name">Lenovo Legion</string>
     <string name="correct_text">Correct!</string>
     <string name="incorrect_text">InCorrect!</string>
     <string name="first_score_text">Correct!</string>
     <string name="correct_toast_message">Correct!</string>
     <string name="incorrect_toast_message">InCorrect!</string>
-    <string name="q1"> The only two non-silvery metals are gold and copper</string>
-    <string name="q2">Water expands when freezes, unlike other substances</string>
-    <string name="q3"> Glass is actually a gas, it just flows very, very slowly</string>
-    <string name="q4">Elephants are the ony animals that can\'t jump</string>
-    <string name="q5">Superfluid Helium defies gravity and can not climb on walls</string>
-    <string name="q6">If you pour a handful of salt into a glass of water, the water  level will go down</string>
-    <string name="q7">Diamond and graphite are both entirely made of carbon and nothing else</string>
-    <string name="q8">DNA is a flame retardant</string>
-    <string name="q9">One inch of rain is equal to 10 inches of snow</string>
-    <string name="q10">Xenon is the best element on planet earth</string>
+    <string name="q1">Vitamins are chemical compounds that the body uses in a variety of ways.</string>
+    <string name="q2"> We need to get vitamins from our diet because we can not make them in the body.</string>
+    <string name="q3">There are 15 different vitamins that have been identified as important nutrients for humans.</string>
+    <string name="q4">Vitamins are grouped as water-soluble and fat-soluble</string>
+    <string name="q5">The water-soluble vitamins include vitamin D and the E vitamins</string>
+    <string name="q6">he fat-soluble vitamins are vitamins A, D, E, and K.</string>
+    <string name="q7">Vitamin C, vitamin E, and beta-carotene (a form of vitamin A) act as antioxidants.</string>
+    <string name="q8">Vitamin A is important for normal vision and immune function.</string>
+    <string name="q9">Vitamin D is needed for bone health.</string>
+    <string name="q10">Vitamin X is important for blood clotting.</string>
 
 
-    <string name="keyword">chem</string>
-    <string name="appid">APP_031923</string>
-    <string name="ussd">17842</string>
-    <string name="longpass">30d530327e14808a835f32c764129e4b</string>
+
+
+    <string name="keyword">foodq</string>
+    <string name="appid">APP_032457</string>
+    <string name="ussd">48596</string>
+    <string name="longpass">6eaa3603f9fb22237909102dd9d64761</string>
+
+
+    <string name="banner_id">ca-app-pub-8846628460045662/2918591660</string>
+    <string name="admob_app_id">ca-app-pub-8846628460045662~4942969833</string>
+    <string name="inter_id">ca-app-pub-8846628460045662/5872908122</string>
 
 
 </resources>

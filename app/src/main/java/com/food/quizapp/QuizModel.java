@@ -1,4 +1,4 @@
-package com.example.quizapp;
+package com.food.quizapp;
 
 public class QuizModel {
     private int mQuestion;

@@ -1,27 +1,22 @@
-package com.example.quizapp;
+package com.food.quizapp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.shashank.sony.fancytoastlib.FancyToast;
 import com.smnadim21.api.BdApps;
 import com.smnadim21.api.Constants;
@@ -41,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements SubscriptionStatu
     private int mUserScore;
     boolean flag=false;
     int qc = 0;
+    AdView adView;
     private QuizModel[] questionCollection = new QuizModel[]{
             new QuizModel(R.string.q1,true),
             new QuizModel(R.string.q2,true),
@@ -61,6 +57,20 @@ public class MainActivity extends AppCompatActivity implements SubscriptionStatu
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+         adView = new AdView(this);
+
+        adView.setAdSize(AdSize.BANNER);
+
+        adView.setAdUnitId(getString(R.string.banner_id));
+        adView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+
 //        if(savedInstanceState != null){
 //            mUserScore=savedInstanceState.getInt(SCORE_KEY);
 //            mQuestionIndex=savedInstanceState.getInt(INDEX_KEY);
